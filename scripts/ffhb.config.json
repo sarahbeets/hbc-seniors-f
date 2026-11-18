@@ -1,0 +1,21 @@
+{
+  "equipe": "HBC CHATEAU-RENARD",
+  "competitions": [
+    {
+      "url": "https://www.ffhandball.fr/competitions/saison-2026-2027-22/departemental/cd45-championnat-sf-2026-2027-32960/",
+      "nom": "Championnat départemental SF"
+    }
+  ],
+  "nomsCourts": {
+    "HBC CHATEAU-RENARD": "Château-Renard",
+    "HAND BALL CLUB GIEN LOIRET": "Gien",
+    "SF ENTENTE VAL SOLOGNE / FLEURY": "Val Sologne / Fleury",
+    "VAL SOLOGNE HANDBALL FEMININ": "Val Sologne",
+    "UNION SPORTIVE VENDOMOISE HANDBALL": "Vendôme",
+    "HANDBALL CLUB DU BLAISOIS": "Blois",
+    "UNION SPORTIVE MUNICIPALE DE MONTARGIS HANDBALL": "Montargis",
+    "HBC LORRIS": "Lorris",
+    "OUZOUER SUR LOIRE HB": "Ouzouer-sur-Loire",
+    "ARGONNE ORLEANS HB": "Argonne Orléans"
+  }
+}

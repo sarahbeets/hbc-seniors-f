@@ -1,0 +1,74 @@
+name: Site de l'équipe
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "23 4 * * *"   # chaque matin, vers 5h ou 6h à Paris
+    - cron: "41 20 * * *"  # chaque soir, vers 21h ou 22h à Paris (scores du week-end)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: site
+  cancel-in-progress: false
+
+jobs:
+  mettre-a-jour:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Lire le calendrier sur le site de la FFHB
+        id: ffhb
+        continue-on-error: true
+        run: node scripts/maj-ffhb.mjs
+
+      - name: Garder une trace des changements
+        if: steps.ffhb.outcome == 'success'
+        run: |
+          git config user.name "Calendrier FFHB"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          # On n'enregistre que les vrais changements (pas la simple heure de vérification),
+          # plus une fois par mois pour que GitHub garde la mise à jour automatique active.
+          if git diff --cached --quiet -I '"maj":' -I '^DTSTAMP' && [ "$(date -u +%d)" != "01" ]; then
+            echo "Rien de nouveau sur le site de la FFHB"
+            git reset -q
+          else
+            git commit -m "Calendrier FFHB mis à jour [skip netlify]"
+            git pull --rebase -q || true
+            git push
+          fi
+
+      - name: Préparer les fichiers du site
+        run: |
+          mkdir -p _site
+          cp -r index.html config.js manifest.webmanifest assets data _site/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deploiement
+        uses: actions/deploy-pages@v4
+
+      - name: Prévenir si la FFHB n'a pas pu être lue
+        if: steps.ffhb.outcome == 'failure'
+        run: |
+          echo "::error::Le site de la FFHB n'a pas pu être lu. Le site de l'équipe garde le dernier calendrier connu."
+          exit 1

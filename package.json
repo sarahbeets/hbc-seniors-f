@@ -1,0 +1,9 @@
+{
+  "name": "hbc-seniors-f",
+  "private": true,
+  "type": "module",
+  "description": "Site de l'équipe seniors filles du HBC Château-Renard",
+  "dependencies": {
+    "@netlify/blobs": "11.1.7"
+  }
+}
