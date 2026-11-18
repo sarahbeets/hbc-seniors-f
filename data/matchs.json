@@ -1,10 +1,10 @@
 {
  "version": 1,
- "maj": "2026-11-18T12:55:00.000Z",
+ "maj": "2026-11-18T14:58:11.466Z",
  "equipe": {
   "nom": "HBC CHATEAU-RENARD",
   "court": "Château-Renard",
-  "logo": "https://media-logos-clubs.ffhandball.fr/128/2025-09-01-901d6fb7-9d5d-49e3-82ee-a9b9be4d9e9c.webp"
+  "logo": "data/logos/2025-09-01-901d6fb7-9d5d-49e3-82ee-a9b9be4d9e9c.webp"
  },
  "competitions": [
   {
@@ -29,7 +29,7 @@
    "adversaire": {
     "nom": "OUZOUER SUR LOIRE HB",
     "court": "Ouzouer-sur-Loire",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2017-09-15-8532a26b-14f4-4c49-806c-2d1eb43fb78a.webp"
+    "logo": "data/logos/2017-09-15-8532a26b-14f4-4c49-806c-2d1eb43fb78a.webp"
    },
    "score": {
     "nous": "14",
@@ -65,7 +65,7 @@
    "adversaire": {
     "nom": "UNION SPORTIVE VENDOMOISE HANDBALL",
     "court": "Vendôme",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2019-08-13-ab380e6f-2984-40b6-9ba9-b95be517a2f7.webp"
+    "logo": "data/logos/2019-08-13-ab380e6f-2984-40b6-9ba9-b95be517a2f7.webp"
    },
    "score": {
     "nous": "20",
@@ -101,7 +101,7 @@
    "adversaire": {
     "nom": "VAL SOLOGNE HANDBALL FEMININ",
     "court": "Val Sologne",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2019-08-21-c28304b5-5fcf-4bdb-a362-19b12acbf8d0.webp"
+    "logo": "data/logos/2019-08-21-c28304b5-5fcf-4bdb-a362-19b12acbf8d0.webp"
    },
    "score": {
     "nous": "28",
@@ -137,7 +137,7 @@
    "adversaire": {
     "nom": "UNION SPORTIVE MUNICIPALE DE MONTARGIS HANDBALL",
     "court": "Montargis",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2015-07-28-0cba2c60-4f66-4afe-abdf-a1cc34849f70.webp"
+    "logo": "data/logos/2015-07-28-0cba2c60-4f66-4afe-abdf-a1cc34849f70.webp"
    },
    "score": {
     "nous": "31",
@@ -173,7 +173,7 @@
    "adversaire": {
     "nom": "HBC LORRIS",
     "court": "Lorris",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2024-05-26-e48ad29e-fb2b-482d-a924-7f55ba65f009.webp"
+    "logo": "data/logos/2024-05-26-e48ad29e-fb2b-482d-a924-7f55ba65f009.webp"
    },
    "score": {
     "nous": "28",
@@ -209,7 +209,7 @@
    "adversaire": {
     "nom": "ARGONNE ORLEANS HB",
     "court": "Argonne Orléans",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2017-11-15-e335b473-eff7-42e7-bb5d-3f74e1a22b3c.webp"
+    "logo": "data/logos/2017-11-15-e335b473-eff7-42e7-bb5d-3f74e1a22b3c.webp"
    },
    "score": null,
    "resultat": null,
@@ -240,7 +240,7 @@
    "adversaire": {
     "nom": "HAND BALL CLUB GIEN LOIRET",
     "court": "Gien",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2022-08-14-3bc57655-d80e-4467-9971-85b7e1387d7a.webp"
+    "logo": "data/logos/2022-08-14-3bc57655-d80e-4467-9971-85b7e1387d7a.webp"
    },
    "score": null,
    "resultat": null,
@@ -302,7 +302,7 @@
    "adversaire": {
     "nom": "HANDBALL CLUB DU BLAISOIS",
     "court": "Blois",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2017-07-19-d3b63e9e-b7f6-41e1-9ea0-578305f8e798.webp"
+    "logo": "data/logos/2017-07-19-d3b63e9e-b7f6-41e1-9ea0-578305f8e798.webp"
    },
    "score": null,
    "resultat": null,
@@ -326,7 +326,7 @@
    "adversaire": {
     "nom": "OUZOUER SUR LOIRE HB",
     "court": "Ouzouer-sur-Loire",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2017-09-15-8532a26b-14f4-4c49-806c-2d1eb43fb78a.webp"
+    "logo": "data/logos/2017-09-15-8532a26b-14f4-4c49-806c-2d1eb43fb78a.webp"
    },
    "score": null,
    "resultat": null,
@@ -350,7 +350,7 @@
    "adversaire": {
     "nom": "UNION SPORTIVE VENDOMOISE HANDBALL",
     "court": "Vendôme",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2019-08-13-ab380e6f-2984-40b6-9ba9-b95be517a2f7.webp"
+    "logo": "data/logos/2019-08-13-ab380e6f-2984-40b6-9ba9-b95be517a2f7.webp"
    },
    "score": null,
    "resultat": null,
@@ -381,7 +381,7 @@
    "adversaire": {
     "nom": "VAL SOLOGNE HANDBALL FEMININ",
     "court": "Val Sologne",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2019-08-21-c28304b5-5fcf-4bdb-a362-19b12acbf8d0.webp"
+    "logo": "data/logos/2019-08-21-c28304b5-5fcf-4bdb-a362-19b12acbf8d0.webp"
    },
    "score": null,
    "resultat": null,
@@ -405,7 +405,7 @@
    "adversaire": {
     "nom": "UNION SPORTIVE MUNICIPALE DE MONTARGIS HANDBALL",
     "court": "Montargis",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2015-07-28-0cba2c60-4f66-4afe-abdf-a1cc34849f70.webp"
+    "logo": "data/logos/2015-07-28-0cba2c60-4f66-4afe-abdf-a1cc34849f70.webp"
    },
    "score": null,
    "resultat": null,
@@ -429,7 +429,7 @@
    "adversaire": {
     "nom": "HBC LORRIS",
     "court": "Lorris",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2024-05-26-e48ad29e-fb2b-482d-a924-7f55ba65f009.webp"
+    "logo": "data/logos/2024-05-26-e48ad29e-fb2b-482d-a924-7f55ba65f009.webp"
    },
    "score": null,
    "resultat": null,
@@ -453,7 +453,7 @@
    "adversaire": {
     "nom": "ARGONNE ORLEANS HB",
     "court": "Argonne Orléans",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2017-11-15-e335b473-eff7-42e7-bb5d-3f74e1a22b3c.webp"
+    "logo": "data/logos/2017-11-15-e335b473-eff7-42e7-bb5d-3f74e1a22b3c.webp"
    },
    "score": null,
    "resultat": null,
@@ -477,7 +477,7 @@
    "adversaire": {
     "nom": "HAND BALL CLUB GIEN LOIRET",
     "court": "Gien",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2022-08-14-3bc57655-d80e-4467-9971-85b7e1387d7a.webp"
+    "logo": "data/logos/2022-08-14-3bc57655-d80e-4467-9971-85b7e1387d7a.webp"
    },
    "score": null,
    "resultat": null,
@@ -525,7 +525,7 @@
    "adversaire": {
     "nom": "HANDBALL CLUB DU BLAISOIS",
     "court": "Blois",
-    "logo": "https://media-logos-clubs.ffhandball.fr/128/2017-07-19-d3b63e9e-b7f6-41e1-9ea0-578305f8e798.webp"
+    "logo": "data/logos/2017-07-19-d3b63e9e-b7f6-41e1-9ea0-578305f8e798.webp"
    },
    "score": null,
    "resultat": null,
@@ -540,7 +540,7 @@
    "place": 1,
    "nom": "VAL SOLOGNE HANDBALL FEMININ",
    "court": "Val Sologne",
-   "logo": "https://media-logos-clubs.ffhandball.fr/128/2019-08-21-c28304b5-5fcf-4bdb-a362-19b12acbf8d0.webp",
+   "logo": "data/logos/2019-08-21-c28304b5-5fcf-4bdb-a362-19b12acbf8d0.webp",
    "pts": 15,
    "j": 5,
    "v": 5,
@@ -562,7 +562,7 @@
    "place": 2,
    "nom": "UNION SPORTIVE MUNICIPALE DE MONTARGIS HANDBALL",
    "court": "Montargis",
-   "logo": "https://media-logos-clubs.ffhandball.fr/128/2015-07-28-0cba2c60-4f66-4afe-abdf-a1cc34849f70.webp",
+   "logo": "data/logos/2015-07-28-0cba2c60-4f66-4afe-abdf-a1cc34849f70.webp",
    "pts": 12,
    "j": 5,
    "v": 3,
@@ -584,7 +584,7 @@
    "place": 3,
    "nom": "HBC CHATEAU-RENARD",
    "court": "Château-Renard",
-   "logo": "https://media-logos-clubs.ffhandball.fr/128/2025-09-01-901d6fb7-9d5d-49e3-82ee-a9b9be4d9e9c.webp",
+   "logo": "data/logos/2025-09-01-901d6fb7-9d5d-49e3-82ee-a9b9be4d9e9c.webp",
    "pts": 11,
    "j": 5,
    "v": 3,
@@ -606,7 +606,7 @@
    "place": 4,
    "nom": "ARGONNE ORLEANS HB",
    "court": "Argonne Orléans",
-   "logo": "https://media-logos-clubs.ffhandball.fr/128/2017-11-15-e335b473-eff7-42e7-bb5d-3f74e1a22b3c.webp",
+   "logo": "data/logos/2017-11-15-e335b473-eff7-42e7-bb5d-3f74e1a22b3c.webp",
    "pts": 9,
    "j": 4,
    "v": 2,
@@ -628,7 +628,7 @@
    "place": 5,
    "nom": "HAND BALL CLUB GIEN LOIRET",
    "court": "Gien",
-   "logo": "https://media-logos-clubs.ffhandball.fr/128/2022-08-14-3bc57655-d80e-4467-9971-85b7e1387d7a.webp",
+   "logo": "data/logos/2022-08-14-3bc57655-d80e-4467-9971-85b7e1387d7a.webp",
    "pts": 7,
    "j": 3,
    "v": 2,
@@ -649,7 +649,7 @@
    "place": 6,
    "nom": "OUZOUER SUR LOIRE HB",
    "court": "Ouzouer-sur-Loire",
-   "logo": "https://media-logos-clubs.ffhandball.fr/128/2017-09-15-8532a26b-14f4-4c49-806c-2d1eb43fb78a.webp",
+   "logo": "data/logos/2017-09-15-8532a26b-14f4-4c49-806c-2d1eb43fb78a.webp",
    "pts": 7,
    "j": 3,
    "v": 2,
@@ -671,7 +671,7 @@
    "place": 7,
    "nom": "UNION SPORTIVE VENDOMOISE HANDBALL",
    "court": "Vendôme",
-   "logo": "https://media-logos-clubs.ffhandball.fr/128/2019-08-13-ab380e6f-2984-40b6-9ba9-b95be517a2f7.webp",
+   "logo": "data/logos/2019-08-13-ab380e6f-2984-40b6-9ba9-b95be517a2f7.webp",
    "pts": 6,
    "j": 5,
    "v": 1,
@@ -693,7 +693,7 @@
    "place": 8,
    "nom": "HBC LORRIS",
    "court": "Lorris",
-   "logo": "https://media-logos-clubs.ffhandball.fr/128/2024-05-26-e48ad29e-fb2b-482d-a924-7f55ba65f009.webp",
+   "logo": "data/logos/2024-05-26-e48ad29e-fb2b-482d-a924-7f55ba65f009.webp",
    "pts": 5,
    "j": 5,
    "v": 0,
@@ -715,7 +715,7 @@
    "place": 9,
    "nom": "HANDBALL CLUB DU BLAISOIS",
    "court": "Blois",
-   "logo": "https://media-logos-clubs.ffhandball.fr/128/2017-07-19-d3b63e9e-b7f6-41e1-9ea0-578305f8e798.webp",
+   "logo": "data/logos/2017-07-19-d3b63e9e-b7f6-41e1-9ea0-578305f8e798.webp",
    "pts": 4,
    "j": 2,
    "v": 1,

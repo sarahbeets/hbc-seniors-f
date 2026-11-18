@@ -1,0 +1,132 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HBC Chateau-Renard//Seniors F//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Matchs Château-Renard SF
+X-WR-TIMEZONE:Europe/Paris
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+BEGIN:VEVENT
+UID:ffhb-2719639@hbc-seniors-f
+DTSTAMP:20261118T145800Z
+DTSTART:20260927T120000Z
+DTEND:20260927T140000Z
+SUMMARY:Match Ouzouer-sur-Loire - Château-Renard (extérieur)
+LOCATION:GYMNASE MUNICIPAL\, RUE FOUCHARD\, 45570 OUZOUER SUR LOIRE
+DESCRIPTION:Journée 1 · Championnat départemental SF\nhttps://www.ffhan
+ dball.fr/competitions/saison-2026-2027-22/departemental/cd45-championnat-
+ sf-2026-2027-32960/poule-196333/rencontre-2719639/
+URL:https://www.ffhandball.fr/competitions/saison-2026-2027-22/departement
+ al/cd45-championnat-sf-2026-2027-32960/poule-196333/rencontre-2719639/
+END:VEVENT
+BEGIN:VEVENT
+UID:ffhb-2719644@hbc-seniors-f
+DTSTAMP:20261118T145800Z
+DTSTART:20261003T170000Z
+DTEND:20261003T190000Z
+SUMMARY:Match Château-Renard - Vendôme (domicile)
+LOCATION:COMPLEXE SPORTIF DE TRIGUERES\, LIEU DIT L'ILE DU MOULIN\, 45220 
+ TRIGUERES
+DESCRIPTION:Journée 2 · Championnat départemental SF\nhttps://www.ffhan
+ dball.fr/competitions/saison-2026-2027-22/departemental/cd45-championnat-
+ sf-2026-2027-32960/poule-196333/rencontre-2719644/
+URL:https://www.ffhandball.fr/competitions/saison-2026-2027-22/departement
+ al/cd45-championnat-sf-2026-2027-32960/poule-196333/rencontre-2719644/
+END:VEVENT
+BEGIN:VEVENT
+UID:ffhb-2719648@hbc-seniors-f
+DTSTAMP:20261118T145800Z
+DTSTART:20261010T180000Z
+DTEND:20261010T200000Z
+SUMMARY:Match Val Sologne - Château-Renard (extérieur)
+LOCATION:PAUL GUERIN (NOUVEAU GYMNASE)\, RUE ARISTIDE BRIAND\, 45240 LA FE
+ RTE ST AUBIN
+DESCRIPTION:Journée 3 · Championnat départemental SF\nhttps://www.ffhan
+ dball.fr/competitions/saison-2026-2027-22/departemental/cd45-championnat-
+ sf-2026-2027-32960/poule-196333/rencontre-2719648/
+URL:https://www.ffhandball.fr/competitions/saison-2026-2027-22/departement
+ al/cd45-championnat-sf-2026-2027-32960/poule-196333/rencontre-2719648/
+END:VEVENT
+BEGIN:VEVENT
+UID:ffhb-2719653@hbc-seniors-f
+DTSTAMP:20261118T145800Z
+DTSTART:20261107T180000Z
+DTEND:20261107T200000Z
+SUMMARY:Match Château-Renard - Montargis (domicile)
+LOCATION:COMPLEXE SPORTIF DE TRIGUERES\, LIEU DIT L'ILE DU MOULIN\, 45220 
+ TRIGUERES
+DESCRIPTION:Journée 4 · Championnat départemental SF\nhttps://www.ffhan
+ dball.fr/competitions/saison-2026-2027-22/departemental/cd45-championnat-
+ sf-2026-2027-32960/poule-196333/rencontre-2719653/
+URL:https://www.ffhandball.fr/competitions/saison-2026-2027-22/departement
+ al/cd45-championnat-sf-2026-2027-32960/poule-196333/rencontre-2719653/
+END:VEVENT
+BEGIN:VEVENT
+UID:ffhb-2719660@hbc-seniors-f
+DTSTAMP:20261118T145800Z
+DTSTART:20261115T130000Z
+DTEND:20261115T150000Z
+SUMMARY:Match Lorris - Château-Renard (extérieur)
+LOCATION:COMPLEXE MULTISPORTIF\, zone de la noue\, 45260 LORRIS
+DESCRIPTION:Journée 5 · Championnat départemental SF\nhttps://www.ffhan
+ dball.fr/competitions/saison-2026-2027-22/departemental/cd45-championnat-
+ sf-2026-2027-32960/poule-196333/rencontre-2719660/
+URL:https://www.ffhandball.fr/competitions/saison-2026-2027-22/departement
+ al/cd45-championnat-sf-2026-2027-32960/poule-196333/rencontre-2719660/
+END:VEVENT
+BEGIN:VEVENT
+UID:ffhb-2719663@hbc-seniors-f
+DTSTAMP:20261118T145800Z
+DTSTART:20261128T180000Z
+DTEND:20261128T200000Z
+SUMMARY:Match Château-Renard - Argonne Orléans (domicile)
+LOCATION:COMPLEXE SPORTIF DE TRIGUERES\, LIEU DIT L'ILE DU MOULIN\, 45220 
+ TRIGUERES
+DESCRIPTION:Journée 6 · Championnat départemental SF\nhttps://www.ffhan
+ dball.fr/competitions/saison-2026-2027-22/departemental/cd45-championnat-
+ sf-2026-2027-32960/poule-196333/rencontre-2719663/
+URL:https://www.ffhandball.fr/competitions/saison-2026-2027-22/departement
+ al/cd45-championnat-sf-2026-2027-32960/poule-196333/rencontre-2719663/
+END:VEVENT
+BEGIN:VEVENT
+UID:ffhb-2719667@hbc-seniors-f
+DTSTAMP:20261118T145800Z
+DTSTART:20261205T200000Z
+DTEND:20261205T220000Z
+SUMMARY:Match Gien - Château-Renard (extérieur)
+LOCATION:GYMNASE DE BILDSTEIN\, 112 CHEMIN DE LA FONTAINE Z.A. DE CHANTEME
+ RLE\, 45500 GIEN
+DESCRIPTION:Journée 7 · Championnat départemental SF\nhttps://www.ffhan
+ dball.fr/competitions/saison-2026-2027-22/departemental/cd45-championnat-
+ sf-2026-2027-32960/poule-196333/rencontre-2719667/
+URL:https://www.ffhandball.fr/competitions/saison-2026-2027-22/departement
+ al/cd45-championnat-sf-2026-2027-32960/poule-196333/rencontre-2719667/
+END:VEVENT
+BEGIN:VEVENT
+UID:ffhb-2719672@hbc-seniors-f
+DTSTAMP:20261118T145800Z
+DTSTART:20261212T180000Z
+DTEND:20261212T200000Z
+SUMMARY:Match Val Sologne / Fleury - Château-Renard (extérieur)
+LOCATION:PAUL GUERIN (NOUVEAU GYMNASE)\, RUE ARISTIDE BRIAND\, 45240 LA FE
+ RTE ST AUBIN
+DESCRIPTION:Journée 8 · Championnat départemental SF\nhttps://www.ffhan
+ dball.fr/competitions/saison-2026-2027-22/departemental/cd45-championnat-
+ sf-2026-2027-32960/poule-196333/rencontre-2719672/
+URL:https://www.ffhandball.fr/competitions/saison-2026-2027-22/departement
+ al/cd45-championnat-sf-2026-2027-32960/poule-196333/rencontre-2719672/
+END:VEVENT
+BEGIN:VEVENT
+UID:ffhb-2719689@hbc-seniors-f
+DTSTAMP:20261118T145800Z
+DTSTART:20270207T130000Z
+DTEND:20270207T150000Z
+SUMMARY:Match Vendôme - Château-Renard (extérieur)
+LOCATION:GYMNASE AMPERE\, 2 RUE AMPERE\, 41100 VENDOME
+DESCRIPTION:Journée 11 · Championnat départemental SF\nhttps://www.ffha
+ ndball.fr/competitions/saison-2026-2027-22/departemental/cd45-championnat
+ -sf-2026-2027-32960/poule-196333/rencontre-2719689/
+URL:https://www.ffhandball.fr/competitions/saison-2026-2027-22/departement
+ al/cd45-championnat-sf-2026-2027-32960/poule-196333/rencontre-2719689/
+END:VEVENT
+END:VCALENDAR
