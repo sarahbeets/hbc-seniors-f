@@ -187,6 +187,7 @@
     const liste = [];
     const matchs = (S.matchs && S.matchs.matchs) || [];
     const joursDeMatch = new Set(matchs.filter(m => m.date).map(m => cleJour(new Date(m.date))));
+    for (const x of etat.ajouts || []) if (x.genre === 'exterieur' || x.genre === 'domicile') joursDeMatch.add(x.date);
 
     const fin = dateDe(finSaison());
     for (let d = minuit(new Date()); d <= fin; d = ajouterJours(d, 1)) {
@@ -235,6 +236,7 @@
       liste.push({
         id: x.id,
         type: 'autre',
+        genre: x.genre === 'exterieur' || x.genre === 'domicile' ? x.genre : 'autre',
         titre: x.titre,
         debut: quand,
         tri: quand || new Date(jour.getFullYear(), jour.getMonth(), jour.getDate(), 12),
@@ -253,6 +255,18 @@
     return ajouterJours(minuit(r.tri), 1);
   }
   const aVenir = r => finDe(r) > new Date();
+  // Match ajouté à la main (coupe, amical…) : il se comporte comme un match de championnat
+  const estMatchAjoute = r => r.type === 'autre' && (r.genre === 'exterieur' || r.genre === 'domicile');
+  const estMatchQuelconque = r => r.type === 'match' || estMatchAjoute(r);
+  const aDomicile = r => (r.type === 'match' && r.domicile) || (r.type === 'autre' && r.genre === 'domicile');
+  const avecBuffet = r => estMatchQuelconque(r) && aDomicile(r);
+  const avecCovoit = r => estMatchQuelconque(r) && !aDomicile(r);
+  const GENRES_AJOUT = [
+    ['exterieur', '🚗', 'Match à l’extérieur'],
+    ['domicile', '🏠', 'Match à domicile'],
+    ['autre', '🎉', 'Autre rendez-vous'],
+  ];
+  const libelleAutre = r => (GENRES_AJOUT.find(g => g[0] === r.genre) || GENRES_AJOUT[2]);
   let cacheRdv = null;
   function rendezVous() {
     if (!cacheRdv) cacheRdv = construireRendezVous();
@@ -359,22 +373,22 @@
   }
   function pastilles(r) {
     if (r.annule) return `<span class="pastille pastille--annule">${r.annule === 'Jour de match' ? 'Jour de match' : 'Annulé'}</span>`;
-    if (r.type !== 'match') return '';
-    return r.domicile
+    if (!estMatchQuelconque(r)) return '';
+    return aDomicile(r)
       ? `<span class="pastille pastille--dom">${emo('🏠')}Domicile</span>`
       : `<span class="pastille pastille--ext">${emo('🚗')}Extérieur</span>`;
   }
   function tuileDate(r) {
     const d = r.tri;
     const jour = r.type === 'match' && !r.debut ? 'W-E' : F.jourAbr.format(d).replace('.', '');
-    return `<span class="tuile-date ${r.type === 'match' ? 'tuile-date--match' : ''}" aria-hidden="true"><span class="tuile-jour">${esc(jour)}</span><span class="tuile-num">${d.getDate()}</span><span class="tuile-mois">${esc(F.moisAbr.format(d))}</span></span>`;
+    return `<span class="tuile-date ${estMatchQuelconque(r) ? 'tuile-date--match' : ''}" aria-hidden="true"><span class="tuile-jour">${esc(jour)}</span><span class="tuile-num">${d.getDate()}</span><span class="tuile-mois">${esc(F.moisAbr.format(d))}</span></span>`;
   }
   function ligneRdv(r) {
     const c = compter(r.id);
     const meta = [];
     if (r.annule) meta.push(`<span>${esc(r.annule)}</span>`);
     else {
-      if (r.type === 'match') meta.push(pastilles(r));
+      if (estMatchQuelconque(r)) meta.push(pastilles(r));
       meta.push(`<span>${ico('horloge')}${esc(r.type === 'match' && !r.debut ? 'Date à confirmer' : heureTexte(r))}</span>`);
       if (r.lieu) meta.push(`<span>${ico('pin')}${esc(r.lieu)}</span>`);
     }
@@ -399,7 +413,9 @@
     const c = compter(r.id);
     const etiquettes = r.type === 'match'
       ? `<span class="hero-etiquette hero-etiquette--renard">${emo('🤾‍♀️')}Match ${r.domicile ? 'à domicile' : 'à l’extérieur'}</span><span class="hero-etiquette">Journée ${r.match.journee}</span>`
-      : `<span class="hero-etiquette">${emo(r.type === 'autre' ? '🎉' : '🤾‍♀️')}${r.type === 'autre' ? 'Rendez-vous' : 'Entraînement'}</span>`;
+      : estMatchAjoute(r)
+        ? `<span class="hero-etiquette hero-etiquette--renard">${emo('🤾‍♀️')}${esc(libelleAutre(r)[2])}</span>`
+        : `<span class="hero-etiquette">${emo(r.type === 'autre' ? '🎉' : '🤾‍♀️')}${r.type === 'autre' ? 'Rendez-vous' : 'Entraînement'}</span>`;
     let corps;
     if (r.type === 'match') {
       const nous = (S.matchs && S.matchs.equipe && S.matchs.equipe.court) || 'Château-Renard';
@@ -593,7 +609,7 @@
   function lienWhatsApp(r, c) {
     const noms = c.sans.map(prenomDe);
     const texte = [
-      `${r.type === 'match' ? '🤾‍♀️ ' : ''}${libelleQuoi(r)}, ${libelleQuand(r)}`,
+      `${estMatchQuelconque(r) ? '🤾‍♀️ ' : ''}${libelleQuoi(r)}, ${libelleQuand(r)}`,
       `✅ ${c.oui.length} ${c.oui.length > 1 ? 'présentes' : 'présente'}   🤔 ${c.peut.length} peut-être   ❌ ${c.non.length} ${c.non.length > 1 ? 'absentes' : 'absente'}`,
       noms.length ? `On attend encore la réponse de ${listeNoms(noms)} 🙏` : '',
       `Réponds ici 👉 ${lienRdv(r)}`,
@@ -635,7 +651,7 @@
     }
     const chips = r.type === 'match'
       ? `${pastilles(r)}<span class="pastille">Journée ${m.journee}</span>`
-      : (r.annule ? pastilles(r) : `<span class="pastille">${r.type === 'autre' ? 'Rendez-vous' : 'Entraînement'}</span>`);
+      : (r.annule ? pastilles(r) : estMatchAjoute(r) ? pastilles(r) : `<span class="pastille">${r.type === 'autre' ? 'Rendez-vous' : 'Entraînement'}</span>`);
     let lieu = '';
     if (r.type === 'match' && m.salle) {
       const s = m.salle;
@@ -668,8 +684,8 @@
         </div>
         ${c.sans.length && !r.annule ? `<div style="margin-top:12px"><a class="bouton bouton--whatsapp bouton--plein" href="${esc(lienWhatsApp(r, c))}" target="_blank" rel="noopener">${emo('📢')}Relancer sur WhatsApp</a></div>` : ''}
       </section>
-      ${r.type === 'match' && r.domicile && aVenir(r) ? vueBuffet(r) : ''}
-      ${r.type === 'match' && !r.domicile && aVenir(r) ? vueCovoit(r) : ''}
+      ${avecBuffet(r) && aVenir(r) ? vueBuffet(r) : ''}
+      ${avecCovoit(r) && aVenir(r) ? vueCovoit(r) : ''}
       ${gestion ? actionsGestionRdv(r) : ''}
       ${r.type === 'match' ? `<p class="note">Infos reprises du site de la FFHB, mises à jour ${esc(majTexte())}. <a href="${esc(m.url)}" target="_blank" rel="noopener">Voir la fiche du match</a></p>` : ''}
     `;
@@ -800,7 +816,9 @@
         contenu = '<p class="bloc-aide">Pas d’entraînement ce jour-là car il y a un match.</p>';
       }
     } else if (r.type === 'autre') {
-      contenu = `<button type="button" class="bouton bouton--petit bouton--gris bouton--plein" data-action="g-ajout-retirer" data-ajout="${esc(r.id)}">${ico('poubelle')}Supprimer ce rendez-vous</button>`;
+      contenu = `<p class="bloc-aide">C’est quoi ce rendez-vous ? Un match à l’extérieur ouvre le covoiturage et un match à domicile ouvre le « qui ramène quoi ».</p>
+        <div class="boutons boutons--genre">${GENRES_AJOUT.map(([g, e, t]) => `<button type="button" class="bouton bouton--petit ${r.genre === g ? '' : 'bouton--gris'}" data-action="g-ajout-genre" data-ajout="${esc(r.id)}" data-genre="${g}" aria-pressed="${r.genre === g}">${emo(e)}${esc(t)}</button>`).join('')}</div>
+        <button type="button" class="bouton bouton--petit bouton--gris bouton--plein" data-action="g-ajout-retirer" data-ajout="${esc(r.id)}">${ico('poubelle')}Supprimer ce rendez-vous</button>`;
     }
     if (!contenu) return '';
     return `<section class="bloc bloc--gestion"><h3 class="bloc-titre">${emo('🛠️')}Gestion</h3>${contenu}</section>`;
@@ -914,9 +932,14 @@
       <section class="bloc">
         <h3 class="bloc-titre">${emo('🎉')}Rendez-vous en plus</h3>
         <div class="liste">
-          ${ajouts.map(a => `<div class="g-ligne"><span class="g-nom"><strong>${esc(a.titre)}</strong><small>${esc(capitaliser(F.jourLong.format(dateDe(a.date))))}${a.heure ? ` à ${esc(heureTxt(a.heure))}` : ''}${a.lieu ? `, ${esc(a.lieu)}` : ''}</small></span><button type="button" class="g-icone" data-action="g-ajout-retirer" data-ajout="${esc(a.id)}" aria-label="Supprimer">${ico('poubelle')}</button></div>`).join('')}
+          ${ajouts.map(a => `<div class="g-ligne"><span class="g-nom"><strong>${emo((GENRES_AJOUT.find(g => g[0] === a.genre) || GENRES_AJOUT[2])[1])}${esc(a.titre)}</strong><small>${esc(capitaliser(F.jourLong.format(dateDe(a.date))))}${a.heure ? ` à ${esc(heureTxt(a.heure))}` : ''}${a.lieu ? `, ${esc(a.lieu)}` : ''}</small></span><button type="button" class="g-icone" data-action="g-ajout-retirer" data-ajout="${esc(a.id)}" aria-label="Supprimer">${ico('poubelle')}</button></div>`).join('')}
           <form class="formulaire" data-form="ajout">
-            <input id="g-titre" class="champ" data-champ="g" maxlength="60" placeholder="Titre, par exemple match amical ou soirée d’équipe" required>
+            <input id="g-titre" class="champ" data-champ="g" maxlength="60" placeholder="Titre, par exemple Coupe de France ou soirée d’équipe" required>
+            <label class="champ-etiquete"><span>C’est quoi ?</span><select id="g-genre-ajout" class="champ" data-champ="g">
+              <option value="exterieur">🚗 Match à l’extérieur, avec covoiturage</option>
+              <option value="domicile">🏠 Match à domicile, avec « qui ramène quoi »</option>
+              <option value="autre" selected>🎉 Autre rendez-vous (soirée, réunion…)</option>
+            </select></label>
             <div class="champs-ligne">
               <label class="champ-etiquete"><span>Date</span><input id="g-date" class="champ" data-champ="g" type="date" required></label>
               <label class="champ-etiquete"><span>Heure (facultatif)</span><input id="g-heure-ajout" class="champ" data-champ="g" type="time"></label>
@@ -1576,6 +1599,10 @@
     else if (a === 'g-ajout-retirer') {
       gerer('ajout-retirer', { id: el.dataset.ajout }, 'Rendez-vous supprimé').then(ok => { if (ok && S.feuille && S.feuille.type === 'rdv') fermerFeuille(); });
     }
+    else if (a === 'g-ajout-genre') {
+      const g = GENRES_AJOUT.find(x => x[0] === el.dataset.genre);
+      if (g) gerer('ajout-modifier', { id: el.dataset.ajout, genre: g[0] }, g[0] === 'exterieur' ? 'Covoiturage ouvert 🚗' : g[0] === 'domicile' ? 'Qui ramène quoi ouvert 🍽️' : 'C’est noté');
+    }
     else if (a === 'g-annonce-retirer') gerer('annonce', { texte: '' }, 'Annonce retirée');
     else if (a === 'g-entrainement-retirer') {
       const liste = entrainementsSemaine().filter((_, i) => i !== Number(el.dataset.i));
@@ -1662,7 +1689,7 @@
       ok = await gerer('annulation-ajouter', { du: date, au: date, motif: val('g-motif') || 'Entraînement annulé' }, 'Entraînement annulé');
       if (ok) { S.annulerOuvert = null; rendreFeuille(); }
     } else if (type === 'ajout') {
-      ok = await gerer('ajout-ajouter', { titre: val('g-titre'), date: val('g-date'), heure: val('g-heure-ajout'), lieu: val('g-lieu-ajout'), infos: val('g-infos') }, 'Rendez-vous ajouté');
+      ok = await gerer('ajout-ajouter', { titre: val('g-titre'), genre: val('g-genre-ajout'), date: val('g-date'), heure: val('g-heure-ajout'), lieu: val('g-lieu-ajout'), infos: val('g-infos') }, 'Rendez-vous ajouté');
       if (ok) vider();
     } else if (type === 'membre-ajouter') {
       ok = await gerer('membre-ajouter', { prenom: val('g-nouveau-prenom'), nom: val('g-nouveau-nom'), role: val('g-nouveau-role') }, `${val('g-nouveau-prenom')} a rejoint l’équipe`);

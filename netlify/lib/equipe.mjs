@@ -11,6 +11,8 @@ const REPONSES = new Set(['oui', 'peut', 'non']);
 const ROLES = new Set(['joueuse', 'coach']);
 const APPORTS = ['alcool', 'soft', 'sale', 'sucre'];
 const ID_RDV = /^[A-Z]-[A-Za-z0-9_-]{1,80}$/;
+// Un rendez-vous ajouté peut être un match : à l'extérieur il ouvre le covoiturage, à domicile le « qui ramène quoi »
+const GENRES = ['autre', 'exterieur', 'domicile'];
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const HEURE = /^([01]\d|2[0-3]):[0-5]\d$/;
 
@@ -224,10 +226,16 @@ export function creerApi({ store, env = {} }) {
         if (heure && !HEURE.test(heure)) throw echec('REQUETE', 'Heure invalide');
         const titre = texte(c.titre, 60);
         if (!titre) throw echec('REQUETE', 'Donne un titre au rendez-vous.');
-        cfg.ajouts.push({ id: `X-${date}-${heure.replace(':', '') || 'jour'}-${hasard()}`, date, heure, titre, lieu: texte(c.lieu, 120), infos: texte(c.infos, 240) });
+        const genre = GENRES.includes(c.genre) ? c.genre : 'autre';
+        cfg.ajouts.push({ id: `X-${date}-${heure.replace(':', '') || 'jour'}-${hasard()}`, date, heure, titre, genre, lieu: texte(c.lieu, 120), infos: texte(c.infos, 240) });
         cfg.ajouts.sort((a, b) => (a.date + a.heure).localeCompare(b.date + b.heure));
       } else if (op === 'ajout-retirer') {
         cfg.ajouts = cfg.ajouts.filter(a => a.id !== c.id);
+      } else if (op === 'ajout-modifier') {
+        const a = cfg.ajouts.find(x => x.id === c.id);
+        if (!a) throw echec('REQUETE', 'Ce rendez-vous n’existe plus.');
+        if (!GENRES.includes(c.genre)) throw echec('REQUETE', 'Type de rendez-vous inconnu');
+        a.genre = c.genre;
       } else if (op === 'membre-ajouter') {
         const prenom = texte(c.prenom, 40), nom = texte(c.nom, 40);
         if (!prenom) throw echec('REQUETE', 'Le prénom est obligatoire.');
