@@ -10,7 +10,9 @@ Le site interne de l'équipe. Chaque joueuse dit si elle vient aux entraînement
 
 ## Tout se gère dans l'appli
 
-Avec le code de gestion, l'espace **Gestion** (roue dentée en haut de l'appli) permet de publier une annonce, régler les jours, heures et lieu des entraînements, annuler un entraînement ou une période de vacances, ajouter un match amical ou une soirée, ajouter, renommer ou retirer une joueuse, voir le bilan des présences, répondre à la place de quelqu'un et changer les codes.
+Le site s'ouvre sans code, il suffit d'avoir le lien. Pour tout le monde, les noms de famille n'apparaissent qu'en initiale.
+
+Avec le code de gestion, l'espace **Gestion** (roue dentée en haut de l'appli) permet de publier une annonce, régler les jours, heures et lieu des entraînements, annuler un entraînement ou une période de vacances, ajouter un match amical ou une soirée, ajouter, renommer ou retirer une joueuse, voir le bilan des présences, répondre à la place de quelqu'un et changer le code de gestion.
 
 ## Nouvelle saison
 

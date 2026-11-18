@@ -49,7 +49,6 @@ export function configDeDepart(env = {}) {
   }).filter(m => m.prenom);
   return {
     version: 1,
-    codeEquipe: texte(env.CODE_EQUIPE, 40),
     codeGestion: texte(env.CODE_GESTION, 40),
     membres,
     entrainements: [{ jour: 'mercredi', heure: '20:00' }, { jour: 'vendredi', heure: '20:30' }],
@@ -116,9 +115,11 @@ export function creerApi({ store, env = {} }) {
       for (const [ev, c] of Object.entries(d.covoit || {})) (covoit[ev] = covoit[ev] || {})[m.id] = c;
       for (const [ev, a] of Object.entries(d.apports || {})) (apports[ev] = apports[ev] || {})[m.id] = a;
     }
+    // Le site s'ouvre sans code : pour tout le monde on ne montre que l'initiale du nom de famille,
+    // les noms complets restent réservés à l'espace Gestion.
     const sortie = {
       ok: true,
-      membres: actifs.map(({ id, prenom, nom, role }) => ({ id, prenom, nom, role })),
+      membres: actifs.map(({ id, prenom, nom, role }) => ({ id, prenom, nom: nom ? `${nom.charAt(0).toUpperCase()}.` : '', role })),
       reponses,
       covoit,
       apports,
@@ -127,13 +128,11 @@ export function creerApi({ store, env = {} }) {
       entrainements: config.entrainements,
       finSaison: config.finSaison,
       reglages: { lieuEntrainement: config.lieuEntrainement, annonce: config.annonce },
-      codeRequis: !!config.codeEquipe,
       serveur: new Date().toISOString(),
     };
     if (gestion) {
       sortie.gestion = {
         membres: config.membres.map(({ id, prenom, nom, role, active }) => ({ id, prenom, nom, role, active })),
-        codeEquipe: config.codeEquipe,
       };
     }
     return sortie;
@@ -241,10 +240,6 @@ export function creerApi({ store, env = {} }) {
         if (c.nom !== undefined) m.nom = texte(c.nom, 40);
         if (c.role !== undefined && ROLES.has(c.role)) m.role = c.role;
         if (c.active !== undefined) m.active = !!c.active;
-      } else if (op === 'code-equipe') {
-        const code = texte(c.nouveau, 40);
-        if (code && code.length < 4) throw echec('REQUETE', 'Le code de l’équipe doit faire au moins 4 caractères.');
-        cfg.codeEquipe = code;
       } else if (op === 'code-gestion') {
         const code = texte(c.nouveau, 40);
         if (code.length < 6) throw echec('REQUETE', 'Le code de gestion doit faire au moins 6 caractères.');
@@ -268,10 +263,8 @@ export function creerApi({ store, env = {} }) {
         try { p = JSON.parse(brut || '{}'); } catch { throw echec('REQUETE', 'Requête illisible'); }
       } else throw echec('REQUETE', 'Méthode non prise en charge');
 
+      // Plus de code d'équipe : le lien suffit, seul l'espace Gestion reste protégé par son code.
       let { config } = await lireConfig();
-      if (config.codeEquipe && normaliser(p.code) !== normaliser(config.codeEquipe)) {
-        throw echec(p.code ? 'CODE_INCORRECT' : 'CODE_REQUIS', p.code ? 'Code incorrect' : 'Le code de l’équipe est demandé');
-      }
       const gestion = !!p.codeGestion && !!config.codeGestion && normaliser(p.codeGestion) === normaliser(config.codeGestion);
       if (req.method === 'POST') {
         if (p.action === 'repondre') await repondre(config, p);

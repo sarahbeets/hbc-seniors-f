@@ -843,7 +843,7 @@
     const ent = entrainementsSemaine();
     const annulations = (S.etat.annulations || []).filter(a => a.au >= cleJour(new Date()));
     const ajouts = (S.etat.ajouts || []).filter(a => a.date >= cleJour(new Date()));
-    const lienInvitation = `${location.origin}${location.pathname}${g.codeEquipe ? `#code=${encodeURIComponent(g.codeEquipe)}` : ''}`;
+    const lienInvitation = `${location.origin}${location.pathname}`;
     const ligneMembre = m => {
       if (S.edition === m.id) {
         return `<form class="g-ligne g-ligne--edition formulaire" data-form="membre-modifier" data-id="${esc(m.id)}">
@@ -950,12 +950,11 @@
       </section>
 
       <section class="bloc">
-        <h3 class="bloc-titre">${emo('🔐')}Codes</h3>
-        <form class="liste formulaire" data-form="code-equipe">
-          <label class="etiquette-champ" for="g-code-equipe">Code de l’équipe (demandé une fois sur chaque téléphone)</label>
-          <input id="g-code-equipe" class="champ" data-champ="g" maxlength="40" value="${esc(g.codeEquipe)}" autocomplete="off" autocapitalize="none">
-          <div class="boutons"><button type="submit" class="bouton bouton--petit">Changer le code</button><button type="button" class="bouton bouton--petit bouton--gris" data-action="copier" data-texte="${esc(lienInvitation)}">${ico('copier')}Copier le lien d’invitation</button></div>
-        </form>
+        <h3 class="bloc-titre">${emo('🔐')}Lien et code de gestion</h3>
+        <div class="liste formulaire">
+          <p class="etiquette-champ" style="margin:0">Le site s’ouvre sans code, il suffit d’envoyer le lien dans le groupe de l’équipe.</p>
+          <div class="boutons"><button type="button" class="bouton bouton--petit bouton--gris" data-action="copier" data-texte="${esc(lienInvitation)}">${ico('copier')}Copier le lien du site</button></div>
+        </div>
         <form class="liste formulaire" data-form="code-gestion">
           <label class="etiquette-champ" for="g-code-gestion">Nouveau code de gestion (6 caractères minimum)</label>
           <input id="g-code-gestion" class="champ" data-champ="g" maxlength="40" autocomplete="off" autocapitalize="none" placeholder="Garde-le pour toi et le coach">
@@ -973,7 +972,7 @@
     const etapes = IOS
       ? `<li>Ouvre ce site dans Safari puis touche le bouton Partager ${ico('partager')} en bas de l’écran.</li><li>Choisis « Sur l’écran d’accueil ».</li><li>Touche « Ajouter » en haut à droite.</li>`
       : `<li>Touche les trois points en haut à droite de Chrome.</li><li>Choisis « Ajouter à l’écran d’accueil » ou « Installer l’application ».</li><li>Confirme, l’icône du club apparaît avec tes applis.</li>`;
-    const lien = `${location.origin}${location.pathname}${S.code ? `#code=${encodeURIComponent(S.code)}` : ''}`;
+    const lien = `${location.origin}${location.pathname}`;
     const invitation = `Voici le site de l’équipe pour dire si tu viens aux entraînements et aux matchs 🤾‍♀️ Touche le lien puis ton prénom 👉 ${lien}`;
     return `
       <div class="profil-tete">${avatar(S.moi)}<h2 id="feuille-titre">${esc(m ? `${m.prenom} ${m.nom}`.trim() : '')}</h2><p class="sous-titre">${m && m.role === 'coach' ? 'Coach' : esc(CONFIG.equipe)}, ${esc(CONFIG.club)}</p></div>
@@ -988,7 +987,7 @@
           <a class="bouton bouton--whatsapp bouton--petit" href="https://wa.me/?text=${esc(encodeURIComponent(invitation))}" target="_blank" rel="noopener">${ico('message')}Envoyer le lien</a>
           <button type="button" class="bouton bouton--gris bouton--petit" data-action="copier" data-texte="${esc(lien)}">${ico('copier')}Copier le lien</button>
         </div>
-        <p class="note">Le lien contient le code de l’équipe, partage-le seulement dans le groupe.</p>
+        <p class="note">Le site s’ouvre sans code, partage le lien seulement avec l’équipe.</p>
       </section>`}
       <section class="bloc">
         <h3 class="bloc-titre">${emo('🛠️')}Gestion de l’équipe</h3>
@@ -1672,10 +1671,6 @@
       const mid = f.dataset.id;
       ok = await gerer('membre-modifier', { id: mid, prenom: f.querySelector('[name="prenom"]').value, nom: f.querySelector('[name="nom"]').value, role: f.querySelector('[name="role"]').value }, 'Modification enregistrée');
       if (ok) { S.edition = null; rendreFeuille(); }
-    } else if (type === 'code-equipe') {
-      const nouveau = val('g-code-equipe');
-      ok = await gerer('code-equipe', { nouveau }, nouveau ? 'Code de l’équipe changé' : 'Plus de code demandé');
-      if (ok) { S.code = nouveau; memoire.ecrire('code', nouveau); }
     } else if (type === 'code-gestion') {
       const nouveau = val('g-code-gestion');
       ok = await gerer('code-gestion', { nouveau }, 'Code de gestion changé');
