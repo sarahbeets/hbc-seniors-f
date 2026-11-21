@@ -1,6 +1,6 @@
 {
  "version": 1,
- "maj": "2026-11-18T14:58:11.466Z",
+ "maj": "2026-11-21T01:44:14.716Z",
  "equipe": {
   "nom": "HBC CHATEAU-RENARD",
   "court": "Château-Renard",
@@ -604,44 +604,44 @@
   },
   {
    "place": 4,
+   "nom": "HAND BALL CLUB GIEN LOIRET",
+   "court": "Gien",
+   "logo": "data/logos/2022-08-14-3bc57655-d80e-4467-9971-85b7e1387d7a.webp",
+   "pts": 10,
+   "j": 4,
+   "v": 3,
+   "n": 0,
+   "d": 1,
+   "bp": 128,
+   "bc": 77,
+   "diff": 51,
+   "forme": [
+    -1,
+    1,
+    1,
+    1
+   ],
+   "nous": false
+  },
+  {
+   "place": 5,
    "nom": "ARGONNE ORLEANS HB",
    "court": "Argonne Orléans",
    "logo": "data/logos/2017-11-15-e335b473-eff7-42e7-bb5d-3f74e1a22b3c.webp",
-   "pts": 9,
-   "j": 4,
+   "pts": 10,
+   "j": 5,
    "v": 2,
    "n": 1,
-   "d": 1,
-   "bp": 106,
-   "bc": 81,
-   "diff": 25,
+   "d": 2,
+   "bp": 126,
+   "bc": 110,
+   "diff": 16,
    "forme": [
     1,
     -1,
     0,
     1,
     -1
-   ],
-   "nous": false
-  },
-  {
-   "place": 5,
-   "nom": "HAND BALL CLUB GIEN LOIRET",
-   "court": "Gien",
-   "logo": "data/logos/2022-08-14-3bc57655-d80e-4467-9971-85b7e1387d7a.webp",
-   "pts": 7,
-   "j": 3,
-   "v": 2,
-   "n": 0,
-   "d": 1,
-   "bp": 99,
-   "bc": 57,
-   "diff": 42,
-   "forme": [
-    -1,
-    1,
-    1,
-    1
    ],
    "nous": false
   },
